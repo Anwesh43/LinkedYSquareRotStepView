@@ -210,4 +210,12 @@ class YSquareRotStepView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : YSquareRotStepView {
+            val view : YSquareRotStepView = YSquareRotStepView(activity)
+            activity.setContentView(view)
+            return view 
+        }
+    }
 }
