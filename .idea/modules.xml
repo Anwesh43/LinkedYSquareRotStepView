@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/LinkedYSquareRotStepView.iml" filepath="$PROJECT_DIR$/LinkedYSquareRotStepView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ysquarerotstepview/ysquarerotstepview.iml" filepath="$PROJECT_DIR$/ysquarerotstepview/ysquarerotstepview.iml" />
+    </modules>
+  </component>
+</project>
