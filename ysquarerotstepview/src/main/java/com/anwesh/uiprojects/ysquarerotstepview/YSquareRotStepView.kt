@@ -186,4 +186,26 @@ class YSquareRotStepView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : YSquareRotStepView) {
+
+        private val animator : Animator = Animator(view)
+        private var ysrs : YSquareRotStep = YSquareRotStep(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#BDBDBD"))
+            ysrs.draw(canvas, paint)
+            animator.animate {
+                ysrs.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ysrs.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
