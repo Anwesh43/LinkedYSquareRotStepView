@@ -18,7 +18,7 @@ val color : Int = Color.parseColor("#0D47A1")
 val scGap : Float = 0.05f
 val scDiv : Double = 0.51
 val strokeFactor : Int = 90
-val sizeFactor : Float = 2.4f
+val sizeFactor : Float = 3f
 
 fun Int.getInverse() : Float = 1f / this
 
@@ -33,22 +33,23 @@ fun Float.updateScale(dir : Float, a : Int, b : Int) : Float = dir * scGap * mir
 fun Canvas.drawYSRSNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
-    val gap : Float = Math.min(w, h) / nodes
+    val gap : Float = w / (nodes + 1)
     val size : Float = gap / sizeFactor
     paint.strokeWidth = Math.min(w, h) / strokeFactor
     paint.strokeCap = Paint.Cap.ROUND
     paint.color = color
     val sc1 : Float = scale.divideScale(0, 2)
     val sc2 : Float = scale.divideScale(1, 2)
-    val xGap : Float = (w - paint.strokeWidth) / (lines - 1)
+    val xGap : Float = (2 * size - paint.strokeWidth) / (lines - 1)
     save()
     translate(gap * (i + 1), h/2)
-    rotate(90f * sc2)
+    rotate(-180f * sc2)
+    drawLine(-size, 0f, size, 0f, paint)
     for (j in 0..lines) {
         val sc : Float = sc1.divideScale(j, lines)
         val sf : Float = 1f - 2 * (j % 2)
         save()
-        translate(xGap * j + paint.strokeWidth/2, 0f)
+        translate(-size + xGap * j + paint.strokeWidth/2, 0f)
         drawLine(0f, 0f, 0f, size * sf * sc, paint)
         restore()
     }
@@ -215,7 +216,7 @@ class YSquareRotStepView(ctx : Context) : View(ctx) {
         fun create(activity: Activity) : YSquareRotStepView {
             val view : YSquareRotStepView = YSquareRotStepView(activity)
             activity.setContentView(view)
-            return view 
+            return view
         }
     }
 }
